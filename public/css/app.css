@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+}
+
+/* AUTH */
+.auth-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg,#1f2937,#374151);
+}
+.auth-box {
+    background: white;
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+}
+.auth-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+}
+.sidebar {
+    width: 220px;
+    background: #1f2937;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+.sidebar a, .logout {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    background: none;
+    border: none;
+    text-align: left;
+}
+.content {
+    flex: 1;
+    padding: 30px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+/* BUTTON */
+.btn-primary {
+    background: #1f2937;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* BADGE */
+.badge.pending {
+    background: #facc15;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

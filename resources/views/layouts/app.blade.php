@@ -4,29 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>SIRBO</title>
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body class="bg-gray-100">
+<body>
 
-    <div class="flex min-h-screen">
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h2 class="logo">SIRBO</h2>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/booking">Booking</a>
+                <a href="/payment">Payment</a>
 
-        {{-- SIDEBAR --}}
-        <aside class="w-64 bg-slate-900 text-white p-4">
-            <h1 class="text-lg font-bold mb-6">SIRBO</h1>
-            <ul class="space-y-3 text-sm">
-                <li><a href="/dashboard" class="block hover:text-blue-400">Dashboard</a></li>
-                <li><a href="#" class="block hover:text-blue-400">Reservasi</a></li>
-                <li><a href="#" class="block hover:text-blue-400">Kalender</a></li>
-                <li><a href="#" class="block hover:text-blue-400">Laporan</a></li>
-            </ul>
+                <hr>
+
+                <a href="/admin/dashboard">Admin</a>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="logout">Logout</button>
+                </form>
+            </nav>
         </aside>
 
-        {{-- CONTENT --}}
-        <main class="flex-1 p-6">
-            {{ $slot }}
+        <!-- CONTENT -->
+        <main class="content">
+            @yield('content')
         </main>
-
     </div>
 
 </body>

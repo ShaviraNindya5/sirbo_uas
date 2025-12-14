@@ -1,66 +1,70 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OperatorController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| ROOT
+|--------------------------------------------------------------------------
+| http://127.0.0.1:8000
+*/
+Route::get('/', function () {
+    return redirect('/login');
+});
+
+/*
+|--------------------------------------------------------------------------
+| AUTH (login, register, verify)
 |--------------------------------------------------------------------------
 */
+require __DIR__.'/auth.php';
 
-// ==================== AUTH ROUTES ====================
-// Login, Register, Verify Email
-Route::middleware('guest')->group(function () {
-    Route::view('login', 'auth.login')->name('login');
-    Route::view('register', 'auth.register')->name('register');
-    Route::view('verify-email', 'auth.verify-email')->name('verification.notice');
+/*
+|--------------------------------------------------------------------------
+| USER (TANPA CONTROLLER)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
+
+    // USER DASHBOARD
+    Route::view('/dashboard', 'user.dashboard')->name('dashboard');
+
+    // USER BOOKING
+    Route::view('/booking', 'user.booking')->name('booking');
+
+    // USER PAYMENT
+    Route::view('/payment', 'user.payment')->name('payment');
+
+    // USER KALENDER
+    Route::view('/kalender', 'user.kalender')->name('kalender');
+
 });
 
-// ==================== USER ROUTES ====================
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Dashboard user
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+/*
+|--------------------------------------------------------------------------
+| ADMIN (PAKAI CONTROLLER)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->prefix('admin')->group(function () {
 
-    // Booking
-    Route::get('/booking', function () {
-        return view('user.booking');
-    })->name('booking.index');
-    Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
 
-    // Payment
-    Route::get('/payment', function () {
-        return view('user.payment');
-    })->name('payment.index');
+    Route::get('/report', [AdminController::class, 'report'])
+        ->name('admin.report');
 
-    // Kalender
-    Route::get('/kalender', function () {
-        return view('user.kalender');
-    })->name('kalender.index');
 });
 
-// ==================== ADMIN ROUTES ====================
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+/*
+|--------------------------------------------------------------------------
+| OPERATOR (PAKAI CONTROLLER)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->prefix('operator')->group(function () {
 
-    Route::get('/report', function () {
-        return view('admin.report');
-    })->name('report');
+    Route::get('/dashboard', [OperatorController::class, 'dashboard'])
+        ->name('operator.dashboard');
 
-    Route::post('/confirm/{booking}', [AdminController::class, 'confirm'])->name('confirm');
-});
-
-// ==================== OPERATOR ROUTES ====================
-Route::middleware(['auth', 'role:operator'])->prefix('operator')->name('operator.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('operator.dashboard');
-    })->name('dashboard');
-
-    Route::post('/process/{booking}', [OperatorController::class, 'process'])->name('process');
 });

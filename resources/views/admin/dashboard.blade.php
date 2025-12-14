@@ -1,25 +1,28 @@
-<x-app-layout>
-    <h1 class="text-xl font-bold mb-4">Dashboard Admin</h1>
+@extends('layouts.app')
 
-    <div class="grid grid-cols-3 gap-4 mb-6">
-        <div class="bg-white p-4 rounded shadow">Total Booking: 25</div>
-        <div class="bg-white p-4 rounded shadow">Paid: 18</div>
-        <div class="bg-white p-4 rounded shadow">Pending: 7</div>
-    </div>
+@section('content')
+<h1>Data Reservasi</h1>
 
-    <div class="bg-white p-4 rounded shadow">
-        <h2 class="font-semibold mb-2">Booking Terbaru</h2>
-        <table class="w-full text-sm">
-            <tr class="border-b">
-                <th>User</th>
-                <th>Layanan</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>Rudi</td>
-                <td>Hotel</td>
-                <td>Pending</td>
-            </tr>
-        </table>
-    </div>
-</x-app-layout>
+<div class="card">
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Layanan</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Budi</td>
+            <td>Ruangan</td>
+            <td>20-01</td>
+            <td>Pending</td>
+        </tr>
+        <tr>
+            <td>Ani</td>
+            <td>Hotel</td>
+            <td>22-01</td>
+            <td>Paid</td>
+        </tr>
+    </table>
+</div>
+@endsection

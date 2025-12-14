@@ -1,23 +1,41 @@
-<x-app-layout>
-    <h1 class="text-xl font-bold mb-4">Dashboard</h1>
+@extends('layouts.app')
 
-    <div class="grid grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <h3 class="font-semibold">Hotel</h3>
-            <p>Rp 500.000</p>
-            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">Pesan</button>
-        </div>
+@section('content')
+<h1>Dashboard</h1>
 
-        <div class="bg-white p-4 rounded shadow">
-            <h3 class="font-semibold">Ruangan</h3>
-            <p>Rp 200.000</p>
-            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">Pesan</button>
-        </div>
-
-        <div class="bg-white p-4 rounded shadow">
-            <h3 class="font-semibold">Kendaraan</h3>
-            <p>Rp 300.000</p>
-            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">Pesan</button>
-        </div>
+<div class="stats">
+    <div class="card">
+        <h2>25</h2>
+        <p>Total Booking</p>
     </div>
-</x-app-layout>
+    <div class="card">
+        <h2>18</h2>
+        <p>Paid</p>
+    </div>
+    <div class="card">
+        <h2>Status</h2>
+        <p>Export</p>
+    </div>
+</div>
+
+<h2>Booking Terbaru</h2>
+<div class="card">
+    <table>
+        <tr>
+            <th>Layanan</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Ruangan</td>
+            <td>22-01-25</td>
+            <td>Pending</td>
+        </tr>
+        <tr>
+            <td>Hotel</td>
+            <td>22-01-25</td>
+            <td>Paid</td>
+        </tr>
+    </table>
+</div>
+@endsection

@@ -1,19 +1,12 @@
 <x-auth-layout>
-    <h2 class="text-xl font-bold text-center mb-4">Login</h2>
-
-    <form method="POST" action="{{ route('login') }}" class="space-y-3">
+    <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <input type="email" name="email" placeholder="Email" class="w-full border rounded p-2">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
 
-        <input type="password" name="password" placeholder="Password" class="w-full border rounded p-2">
-
-        <button class="w-full bg-slate-800 text-white py-2 rounded">
-            Login
-        </button>
+        <button class="btn-primary">Register</button>
     </form>
-
-    <p class="text-sm text-center mt-3">
-        Belum punya akun? <a href="{{ route('register') }}" class="text-blue-600">Register</a>
-    </p>
 </x-auth-layout>
